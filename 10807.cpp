@@ -14,7 +14,11 @@ int main(){
     cout<<arr[out+100];
 }
 
+
 //정답 코드
+// Authored by : OceanShape
+// Co-authored by : -
+// http://boj.kr/52f2aac1e7fd4287b3c136159a533c9b
 // #include <bits/stdc++.h>
 // using namespace std;
 

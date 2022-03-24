@@ -25,6 +25,9 @@ string isstrfry(string a, string b) {
 }
 
 //정답코드
+// Authored by : OceanShape
+// Co-authored by : BaaaaaaaaaaarkingDog
+// http://boj.kr/a3d03c0124b544759d306668e55bbf4b
 // #include <bits/stdc++.h>
 // using namespace std;
 

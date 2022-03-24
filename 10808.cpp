@@ -16,6 +16,9 @@ int main(){
 }
 
 //정답 코드
+// Authored by : BaaaaaaaaaaarkingDog
+// Co-authored by : -
+// http://boj.kr/d7178d89538a42ababf4455443e60fe2
 // #include <bits/stdc++.h>
 // using namespace std;
 

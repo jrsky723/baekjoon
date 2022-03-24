@@ -20,6 +20,9 @@ int main(){
 }
 
 //정답
+// Authored by : OceanShape
+// Co-authored by : -
+// http://boj.kr/da61fda65b7d4d7c96fde827da8d1834
 // #include <bits/stdc++.h>
 // using namespace std;
 
