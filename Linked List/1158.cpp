@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int main(){
+int main(){     //내가 구현한 알고리즘의 시간 복잡도 O(N) (KN + N)
     ios::sync_with_stdio(0);
     cin.tie(0);
     vector <int> v;     //정답에서는 queue를 이용하여 앞의 원소를 뒤로 
