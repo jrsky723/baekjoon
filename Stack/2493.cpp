@@ -6,9 +6,9 @@ int main() {
     cin.tie(0);
     stack <pair<int,int>> stk;
     int n,a;
-    cin >> n;   //Á¤´ä¿¡ ¸Å¿ì ±ÙÁ¢, ÇÏÁö¸¸ ´õ È¿À²ÀûÀ¸·Î  ÇÏ±âÀ§ÇØ
-                //Ã³À½ ½ºÅÃ¿¡ Å¾ÀÇ ÃÖ´ë ³ôÀÌº¸´Ù 1³ôÀº °ªÀ» ³ÖÀ¸¸é
-    stk.push({ 0, 0 }); //¸Å ¼ø°£ ¸¶´Ù ÀÌÀüÀÌ 0ÀÌ ¾Æ´ÑÁö È®ÀÎÇÒ ÇÊ¿ä¾øÀ½
+    cin >> n;   //ì •ë‹µì— ë§¤ìš° ê·¼ì ‘, í•˜ì§€ë§Œ ë” íš¨ìœ¨ì ìœ¼ë¡œ  í•˜ê¸°ìœ„í•´
+                //ì²˜ìŒ ìŠ¤íƒì— íƒ‘ì˜ ìµœëŒ€ ë†’ì´ë³´ë‹¤ 1ë†’ì€ ê°’ì„ ë„£ìœ¼ë©´
+    stk.push({ 0, 0 }); //ë§¤ ìˆœê°„ ë§ˆë‹¤ ì´ì „ì´ 0ì´ ì•„ë‹Œì§€ í™•ì¸í•  í•„ìš”ì—†ìŒ
     for (int i = 0; i < n; i++) {
         cin >> a;   
         while (stk.top().first && stk.top().first < a) stk.pop();
@@ -16,7 +16,7 @@ int main() {
         stk.push({a , i+1});
     }
 }
-//Á¤´äÄÚµå
+//ì •ë‹µì½”ë“œ
 // Authored by : twinkite
 // Co-authored by : BaaaaaaaaaaarkingDog
 // http://boj.kr/44465623025e452bba5feb80b0b0e60e

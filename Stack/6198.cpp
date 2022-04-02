@@ -4,8 +4,8 @@ using namespace std;
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
-    int n;      //ÀÌ ¹®Á¦´Â ¹üÀ§¸¦ Àß ÆÄ¾ÇÇØ¾ßÇÑ´Ù
-    long long ans = 0;  //ansÀÇ ¹üÀ§´Â 80000(80000+1)/2 ->int¹üÀ§ÃÊ°ú
+    int n;      //ì´ ë¬¸ì œëŠ” ë²”ìœ„ë¥¼ ìž˜ íŒŒì•…í•´ì•¼í•œë‹¤
+    long long ans = 0;  //ansì˜ ë²”ìœ„ëŠ” 80000(80000+1)/2 ->intë²”ìœ„ì´ˆê³¼
     stack<int> stk; 
     cin >> n;
     int height;
@@ -13,12 +13,12 @@ int main() {
         cin >> height;
         while (!stk.empty() && stk.top() <= height) stk.pop();
         ans += stk.size();
-        stk.push(height);   //ÀÛÀº ¼ýÀÚ°¡ Ãß°¡µÉ ¶§¸¶´Ù ±× ÀÌÀü ºôµùµéÀÇ               
-    }                       //º¥Ä¡¸¶Å·ÀÌ 1Áõ°¡¸¦ Ç¥Çö
+        stk.push(height);   //ìž‘ì€ ìˆ«ìžê°€ ì¶”ê°€ë  ë•Œë§ˆë‹¤ ê·¸ ì´ì „ ë¹Œë”©ë“¤ì˜               
+    }                       //ë²¤ì¹˜ë§ˆí‚¹ì´ 1ì¦ê°€ë¥¼ í‘œí˜„
     cout << ans;  
 }
 
-//Á¤´ä ÄÚµå
+//ì •ë‹µ ì½”ë“œ
 // Authored by : unluckyjung
 // Co-authored by : BaaaaaaaaaaarkingDog
 // http://boj.kr/a84f083cdee3436f9f46acdef175e55f

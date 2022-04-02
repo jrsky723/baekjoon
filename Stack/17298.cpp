@@ -1,26 +1,26 @@
 #include <bits/stdc++.h>
 using namespace std;
-int arr[1000000]; //i¹øÂ°¿¡ ¿ÀÅ«¼ö ÀúÀå
+int arr[1000000]; //ië²ˆì§¸ì— ì˜¤í°ìˆ˜ ì €ìž¥
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
     int n;
     cin >> n;
-    stack <pair<int,int>> s;   //i¹øÂ°, n
+    stack <pair<int,int>> s;   //ië²ˆì§¸, n
     int a;
     for (int i = 0; i < n; i++) {
         cin >> a;
         while (!s.empty() && s.top().second < a) {
             arr[s.top().first] = a;
             s.pop();
-        }         //Á¤´ä°ú ¼ø¼­¸¸ ´Ù¸¦ »Ó ºñ½ÁÇÏ´Ù. pair¸¦ ¾²´Â´ë½Å arrÇÏ³ª´õ »ý¼º
+        }         //ì •ë‹µê³¼ ìˆœì„œë§Œ ë‹¤ë¥¼ ë¿ ë¹„ìŠ·í•˜ë‹¤. pairë¥¼ ì“°ëŠ”ëŒ€ì‹  arrí•˜ë‚˜ë” ìƒì„±
         arr[i] = -1;
         s.push({ i,a });
     }
     for (int i = 0; i < n; i++)
         if(arr[i]) cout << arr[i] << " ";
 }
-//Á¤´ä ÄÚµå
+//ì •ë‹µ ì½”ë“œ
 // Authored by : haneulkimdev
 // Co-authored by : -
 // http://boj.kr/98a57090ad0b472f86492f495a362127
