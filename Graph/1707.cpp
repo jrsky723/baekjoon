@@ -17,7 +17,7 @@ int main() {
       cin >> u >> v;
       adj[u].push_back(v);
       adj[v].push_back(u);
-    }//싸이클이 존재하는가?
+    }
     for (int st = 1; st <= n; st++) {
       if(color[st]) continue;
       queue<int> q;
