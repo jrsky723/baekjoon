@@ -1,5 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
+const int MX = 10000;
 int stc[MX];
 int pos = 0;
 int main(){
