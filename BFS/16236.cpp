@@ -31,12 +31,13 @@ pair<int, int> find(int x, int y) {
       dist[nx][ny] = dist[cur.X][cur.Y] + 1;
       if (board[nx][ny] != 0 && board[nx][ny] < lv) {
         candD = dist[nx][ny];
-        cand.push_back({nx,ny});
+        cand.push_back({nx, ny});
       }
       q.push({nx, ny});
     }
   }
-  if (cand.empty()) return {-1,-1};
+  if (cand.empty())
+    return {-1, -1};
   else {
     sort(cand.begin(), cand.end());
     return cand[0];
@@ -57,7 +58,6 @@ int main() {
       }
     }
   }
-
   while (1) {
     auto nxt = find(pos.X, pos.Y);
     if (nxt.X == -1 && nxt.Y == -1) break;
