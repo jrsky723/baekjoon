@@ -5,22 +5,26 @@ sys.setrecursionlimit(int(1e6))
 INF = int(1e9)
 n = int(input())
 adj = [list(map(int, input().split())) for _ in range(n)]
-dp = [[0]*(1 << n)for _ in range(n)]
+dp = [[-1]*(1 << n)for _ in range(n)]
 
-def dfs(cur, route):
-  if dp[cur][route]:
-    return dp[cur][route]
-
-  if route == (1 << n) - 1:
-    if adj[cur][0] : return adj[cur][0]
-    else : return INF
+def DFS(st, state):
+  if state == (1 << n) - 1:
+    if adj[st][0]:
+      return adj[st][0]
+    else:
+      return INF
   
-  dp[cur][route] = INF
+  if dp[st][state] != -1:
+    return dp[st][state]
+
+  dp[st][state] = INF
+    
   for i in range(1, n):
-    if route & (1 << i) : continue
-    if adj[cur][i] == 0 : continue
-    dp[cur][route] = min(dp[cur][route], dfs(i, route | (1 << i)) + adj[cur][i])
+   if adj[st][i] == 0 or state & (1 << i):
+    continue
 
-  return dp[cur][route]
+   dp[st][state] = min(dp[st][state], DFS(i, state | (1 << i)) + adj[st][i])
 
-print(dfs(0,1))
+  return dp[st][state]
+
+print(DFS(0,1))
