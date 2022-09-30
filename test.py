@@ -1,4 +1,5 @@
-a = 1
-a -= 1
+import sys
+input = sys.stdin.readline
 
-if (a) : print("g")
+r1, s = map(int, input().split())
+print(2*s - r1)
