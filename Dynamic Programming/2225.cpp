@@ -2,7 +2,7 @@
 using namespace std;
 
 int N, K;
-long long MOD = 1000000000;
+int MOD = 1000000000;
 long long dp[205][205];
 int main(){
   ios::sync_with_stdio(0);
