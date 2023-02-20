@@ -5,7 +5,7 @@ using namespace std;
 #define Y second
 
 int v, e, st;
-//비용, 정점 번호
+// 비용, 정점 번호
 vector<pair<int, int>> adj[20005];
 const int INF = 0x3f3f3f3f;
 int d[20005];
@@ -19,24 +19,29 @@ int main() {
   while (e--) {
     int u, v, w;
     cin >> u >> v >> w;
-    adj[u].push_back({ w, v });
+    adj[u].push_back({w, v});
   }
 
-  priority_queue < pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+  priority_queue<pair<int, int>, vector<pair<int, int>>,
+                 greater<pair<int, int>>>
+      pq;
   d[st] = 0;
-  pq.push({ d[st], st });
+  pq.push({d[st], st});
   while (!pq.empty()) {
-    auto cur = pq.top(); pq.pop();
+    auto cur = pq.top();
+    pq.pop();
     if (d[cur.Y] != cur.X) continue;
     for (auto nxt : adj[cur.Y]) {
       if (d[nxt.Y] <= d[cur.Y] + nxt.X) continue;
       d[nxt.Y] = d[cur.Y] + nxt.X;
-      pq.push({ d[nxt.Y], nxt.Y });
+      pq.push({d[nxt.Y], nxt.Y});
     }
   }
 
   for (int i = 1; i <= v; i++) {
-    if (d[i] == INF) cout << "INF\n";
-    else cout << d[i] << '\n';
+    if (d[i] == INF)
+      cout << "INF\n";
+    else
+      cout << d[i] << '\n';
   }
 }
