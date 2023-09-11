@@ -1,19 +1,29 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-using ll = long long;
-ll solve(ll k) {
-  return floor(2 * sqrt(k) - 1e-9);
-}
-int main(void) {
-  ios::sync_with_stdio(0);
-  cin.tie(0);
-
-  int tc;
-  cin >> tc;
-  ll x, y;
-  while (tc--) {
-    cin >> x >> y;
-    cout << solve(y - x) << '\n';
-  }
+int main(){
+    int t;
+    cin >> t;
+    while(t--){
+        int x, y;
+        cin >> x >> y;
+        int d = y - x;
+        int dwsq = sqrt(d);
+        int upsq = dwsq + 1;
+        int dw = dwsq * dwsq;
+        int up = upsq * upsq;
+        int ans = 0;
+        int dist = up - dw - 1;
+        if (d > dw + dist/2) {
+            ans = upsq * 2 - 1;
+        }
+        else if (d > dw){
+            ans = dwsq * 2;
+        }
+        else {
+            ans = dwsq * 2 - 1;
+        }
+        cout << ans << '\n';
+    }
+    return 0;
 }
