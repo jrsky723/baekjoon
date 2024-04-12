@@ -1,47 +1,36 @@
 #include <bits/stdc++.h>
+
 using namespace std;
 
-int main(){     //내가 구현한 알고리즘의 시간 복잡도 O(N) (KN + N)
-    ios::sync_with_stdio(0);
-    cin.tie(0);
-    vector <int> v;     //정답에서는 queue를 이용하여 앞의 원소를 뒤로 
-    vector <int> ans;   //보내고 pop으로 앞을 삭제 또는 원형리스트를 구현
-    int N,K;
-    cin>>N>>K;
+int main() {
+  ios::sync_with_stdio(0);
+  cin.tie(0);
+  int n, k;
+  cin >> n >> k;
 
-    for(int i = 0; i < N; i++) 
-        v.push_back(i+1);
-
-    int cnt = 0;
-
-    while(N){
-        for(int i = 0; i < v.size(); i++){
-
-            if(v[i]) cnt++;     // 0이 아닐 때 cnt증가
-
-            if(cnt==K){         // cnt가 K와 같을때 원소를 0으로 변경, 정답에 추가
-                ans.push_back(v[i]);
-                v[i] = 0;
-                cnt = 0;
-                N--;
-            }
-        }
-    }
-
-    cout<<"<";  
-
-    for(auto it = ans.begin(); it != ans.end()-1; it++) // 마지막 원소 제외하고 출력
-        cout<<*it<<","<<" ";
-    
-    cout<<ans.back()<<">";  //마지막 원소
+  vector<int> vec, ans;
+  for (int i = 1; i <= n; i++) vec.push_back(i);
+  while (!vec.empty()) {
+    rotate(vec.begin(), vec.begin() + k % vec.size(), vec.end());
+    ans.push_back(vec.back());
+    vec.pop_back();
+  }
+  cout << '<';
+  for (int i = 0; i < n; i++) {
+    if (i != n - 1)
+      cout << ans[i] << ", ";
+    else
+      cout << ans[i];
+  }
+  cout << '>';
 }
 
-//정답 1 : 큐를 이용
-// Authored by : haneulkimdev
-// Co-authored by : -
-// http://boj.kr/4ef85f8d8d834deb8b8ae054d249fff9
-// #include <bits/stdc++.h>
-// using namespace std;
+// 정답 1 : 큐를 이용
+//  Authored by : haneulkimdev
+//  Co-authored by : -
+//  http://boj.kr/4ef85f8d8d834deb8b8ae054d249fff9
+//  #include <bits/stdc++.h>
+//  using namespace std;
 
 // int main(void) {
 //   ios::sync_with_stdio(0);
@@ -63,12 +52,12 @@ int main(){     //내가 구현한 알고리즘의 시간 복잡도 O(N) (KN + N
 //   cout << '>';
 // }
 
-//정답 2 : 원형리스트 구현
-// Authored by : OceanShape
-// Co-authored by : -
-// http://boj.kr/b7f7b82420c74d43b13c398fc6c73841
-// #include <bits/stdc++.h>
-// using namespace std;
+// 정답 2 : 원형리스트 구현
+//  Authored by : OceanShape
+//  Co-authored by : -
+//  http://boj.kr/b7f7b82420c74d43b13c398fc6c73841
+//  #include <bits/stdc++.h>
+//  using namespace std;
 
 // int N, K, len = 0;
 

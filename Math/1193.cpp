@@ -1,22 +1,26 @@
 #include <bits/stdc++.h>
+
 using namespace std;
 
 int main() {
   ios::sync_with_stdio(0);
   cin.tie(0);
-  int n;
-  cin >> n;
-  int i = 1;
-  int a = n;
-  while (a > 0) {
-    a -= i;
-    i++;
+
+  int x;
+  cin >> x;
+  int n = 1;
+  while (1) {
+    if (n * (n + 1) / 2 >= x) break;
+    n++;
   }
-  if (i % 2 == 0) {
-    cout << 1 - a << "/" << i + a - 1;
+  int rem = n * (n + 1) / 2 - x;
+  int ans1 = 0, ans2 = 0;
+  if (n % 2) {
+    ans1 = 1 + rem, ans2 = n - rem;
   } else {
-    cout << i + a - 1 << "/" << 1 - a;
+    ans1 = n - rem, ans2 = 1 + rem;
   }
+  cout << ans1 << '/' << ans2 << '\n';
 }
 
 // Authored by : SciEm
@@ -41,8 +45,8 @@ int main() {
 
 //   int nume = x;
 //   int deno = i + 1 - x;
-//   if (i % 2) swap(nume, deno);  // 홀수 번째 군의 순서가 문제와 반대이므로 뒤집는다.
-//   cout << nume << '/' << deno;
+//   if (i % 2) swap(nume, deno);  // 홀수 번째 군의 순서가 문제와 반대이므로
+//   뒤집는다. cout << nume << '/' << deno;
 // }
 /*
 수열을 (1/1) (1/2 2/1) (1/3 2/2 3/1) ... 과 같이 묶으면 i번째 군의 개수는
