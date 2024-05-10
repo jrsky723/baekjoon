@@ -1,31 +1,34 @@
 #include <bits/stdc++.h>
 using namespace std;
-vector<int> adj[105];
-bool vis[105];
+
+const int MAX = 100;
+
+vector<int> adj[MAX + 5];
+bool vis[MAX + 5];
+int n, m, cnt;
+
+void dfs(int x) {
+  vis[x] = true;
+  cnt++;
+  for (auto y : adj[x]) {
+    if (vis[y]) continue;
+    dfs(y);
+  }
+}
+
 int main() {
   ios::sync_with_stdio(0);
   cin.tie(0);
-  int n, m;
+
   cin >> n >> m;
-  while (m--) {
-    int u, v;
-    cin >> u >> v;
-    adj[u].push_back(v);
-    adj[v].push_back(u);
+
+  for (int i = 0; i < m; i++) {
+    int a, b;
+    cin >> a >> b;
+    adj[a].push_back(b);
+    adj[b].push_back(a);
   }
-  queue<int> q;
-  q.push(1);
-  vis[1] = true;
-  int cnt = 0;
-  while (!q.empty()) {
-    int cur = q.front();
-    q.pop();
-    for (auto nxt : adj[cur]) {
-      if (vis[nxt]) continue;
-      q.push(nxt);
-      vis[nxt] = true;
-      cnt++;
-    }
-  }
-  cout << cnt;
+
+  dfs(1);
+  cout << cnt - 1 << '\n';
 }

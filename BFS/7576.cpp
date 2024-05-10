@@ -1,99 +1,54 @@
 #include <bits/stdc++.h>
 using namespace std;
+
 #define X first
 #define Y second
-int board[1002][1002];
-int day[1002][1002];    //dist라 표시 : 거리개념과 같다.
-int dx[4] = { 1,0,-1,0 };
-int dy[4] = { 0,1,0,-1 };
 
-int main() {
-    ios::sync_with_stdio(0);
-    cin.tie(0);
-    int n, m;
-    cin >> m >> n;  //문제의 입력에 주의 할것 m,n을 바꿔서 해결하는데 어렵게함...
-    int maxDay = 0;
-    int cnt = 0;
+const int dx[4] = {1, 0, -1, 0};
+const int dy[4] = {0, 1, 0, -1};
+const int MAX = 1000;
 
-    queue<pair<int, int>> Q;
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m; j++) {
-            cin >> board[i][j];
-            if (board[i][j] == 1) {
-                Q.push({ i,j });
-            }
-            else if (board[i][j] == -1)
-                cnt++;
-        }
+int board[MAX + 3][MAX + 3];
+int dist[MAX + 3][MAX + 3];
+int n, m, ans, rem;
+
+queue<pair<int, int>> Q;
+
+bool OOB(int x, int y) { return x < 0 || y < 0 || x >= n || y >= m; }
+
+void bfs() {
+  while (!Q.empty()) {
+    auto cur = Q.front();
+    Q.pop();
+    ans = max(ans, dist[cur.X][cur.Y]);
+    for (int d = 0; d < 4; d++) {
+      int nx = cur.X + dx[d];
+      int ny = cur.Y + dy[d];
+      if (OOB(nx, ny) || board[nx][ny] == -1 || dist[nx][ny] >= 0) continue;
+      dist[nx][ny] = dist[cur.X][cur.Y] + 1;
+      rem--;
+      Q.push({nx, ny});
     }
-
-    while (!Q.empty()) {
-        pair<int, int> cur = Q.front();
-        int curDay = day[cur.X][cur.Y];
-        maxDay = max(curDay, maxDay);
-        Q.pop();
-        cnt++;
-        for (int dir = 0; dir < 4; dir++) {
-            int nx = cur.X + dx[dir];
-            int ny = cur.Y + dy[dir];
-            if (nx < 0 || nx >= n || ny < 0 || ny >= m) continue;
-            if (board[nx][ny] != 0) continue;
-            board[nx][ny] = 1;
-            day[nx][ny] = curDay + 1;
-            Q.push({ nx,ny });
-        }
-    }
-    if (cnt != m * n) maxDay = -1;
-    cout << maxDay;
+  }
 }
 
-//정답 코드
-// Authored by : BaaaaaaaaaaarkingDog
-// Co-authored by : -
-// http://boj.kr/ae38aa7eb7a44aca87e9d7928402d040
-//#include <bits/stdc++.h>
-//using namespace std;
-//#define X first
-//#define Y second
-//int board[1002][1002];
-//int dist[1002][1002];
-//int n, m;
-//int dx[4] = { 1,0,-1,0 };
-//int dy[4] = { 0,1,0,-1 };
-//int main(void) {
-//    ios::sync_with_stdio(0);
-//    cin.tie(0);
-//    cin >> m >> n;
-//    queue<pair<int, int> > Q;
-//    for (int i = 0; i < n; i++) {
-//        for (int j = 0; j < m; j++) {
-//            cin >> board[i][j];
-//            if (board[i][j] == 1)
-//                Q.push({ i,j });
-//            if (board[i][j] == 0)
-//                dist[i][j] = -1;
-//        }
-//    }
-//    while (!Q.empty()) {
-//        auto cur = Q.front(); Q.pop();
-//        for (int dir = 0; dir < 4; dir++) {
-//            int nx = cur.X + dx[dir];
-//            int ny = cur.Y + dy[dir];
-//            if (nx < 0 || nx >= n || ny < 0 || ny >= m) continue;
-//            if (dist[nx][ny] >= 0) continue;
-//            dist[nx][ny] = dist[cur.X][cur.Y] + 1;
-//            Q.push({ nx,ny });
-//        }
-//    }
-//    int ans = 0;
-//    for (int i = 0; i < n; i++) {
-//        for (int j = 0; j < m; j++) {
-//            if (dist[i][j] == -1) {
-//                cout << -1;
-//                return 0;
-//            }
-//            ans = max(ans, dist[i][j]);
-//        }
-//    }
-//    cout << ans;
-//}
+int main() {
+  ios::sync_with_stdio(0);
+  cin.tie(0);
+
+  cin >> m >> n;
+  for (int i = 0; i < n; i++) {
+    fill(dist[i], dist[i] + m, -1);
+    for (int j = 0; j < m; j++) {
+      cin >> board[i][j];
+      if (board[i][j] == 1) {
+        dist[i][j] = 0;
+        Q.push({i, j});
+      }
+      if (board[i][j] == 0) rem++;
+    }
+  }
+  bfs();
+  if (rem) ans = -1;
+  cout << ans << '\n';
+}
