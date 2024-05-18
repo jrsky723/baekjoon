@@ -1,21 +1,29 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-pair <int, int> s[100005];
-int main(){
+typedef pair<int, int> pii;
+
+const int MAX = 100000;
+int n, cur, cnt;
+
+vector<pii> vec;
+
+int main() {
   ios::sync_with_stdio(0);
   cin.tie(0);
-  int n;
+
   cin >> n;
-  for (int i = 0; i < n; i++)
-    cin >> s[i].second >> s[i].first;
-  sort(s, s+n);
-  int ans = 0;
-  int t = 0;
   for (int i = 0; i < n; i++) {
-    if (t > s[i].second) continue;
-    ans ++;
-    t = s[i].first;
+    int a, b;
+    cin >> a >> b;
+    vec.push_back({b, a});
   }
-  cout << ans;
+  sort(vec.begin(), vec.end());
+  for (auto p : vec) {
+    if (cur <= p.second) {
+      cur = p.first;
+      cnt++;
+    }
+  }
+  cout << cnt << '\n';
 }
